@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 11:39:12 by sqiu              #+#    #+#             */
-/*   Updated: 2022/10/24 17:16:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2022/10/27 10:54:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ static int	print_u(unsigned int n, int count, int fd);
 static int	print_dec_lj(unsigned int n, int count, int conv, t_flags *flags);
 static int	print_dec_rj(unsigned int n, int count, int conv, t_flags *flags);
 
+/*
+Count chars to be printed. 
+If n = 0, dont't print number, only optional preceding spaces.
+Differentiate between left or right justification.
+*/
 int	print_unsigned(unsigned int n, int count, t_flags *flags)
 {
 	int	conv;
@@ -34,6 +39,14 @@ int	print_unsigned(unsigned int n, int count, t_flags *flags)
 	return (count);
 }
 
+/*
+Printing in exactly the following order:
+* Print single space if n positive and space flag specified.
+* Print plus sign if signature flag specified and n = 0 or positive.
+* Print zeroes if zero flag or precision specified.
+* Print number.
+* Print optional spaces.
+*/
 static int	print_dec_lj(unsigned int n, int count, int conv, t_flags *flags)
 {
 	if ((flags->space == 1 && n > 0)
@@ -52,6 +65,14 @@ static int	print_dec_lj(unsigned int n, int count, int conv, t_flags *flags)
 	return (count);
 }
 
+/*
+Printing in exactly the following order:
+* Print single space if n positive and space flag specified.
+* Print optional spaces.
+* Print plus sign if signature flag specified and n = 0 or positive.
+* Print zeroes if zero flag or precision specified.
+* Print number.
+*/
 static int	print_dec_rj(unsigned int n, int count, int conv, t_flags *flags)
 {
 	if ((flags->space == 1 && n > 0)

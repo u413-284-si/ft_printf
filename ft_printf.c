@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:58:40 by sqiu              #+#    #+#             */
-/*   Updated: 2022/10/24 18:19:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2022/10/27 09:34:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ characters printed (excluding the null byte used to end output to
 strings). If an output error is encountered, a negative value is returned.
 */
 
+/*
+********************Uncomment for testing**********************************
+*/
 // void	ft_putchar_fd(char c, int fd)
 // {
 // 	write (fd, &c, 1);
@@ -46,6 +49,11 @@ static void	set_flags(t_flags *flags);
 static int	print_percent(int count);
 static int	type_check(int count, va_list ap, t_flags *flags, const char *fmt);
 
+/*
+Initialise all flags, run through formatter string fmt. If encounters specifier
+%, check following flags. Then check specified print type and print to stdout
+according to flags. If specifier not encountered, print char.
+*/
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
@@ -74,6 +82,10 @@ int	ft_printf(const char *fmt, ...)
 	return (count);
 }
 
+/*
+Check specified printing type and call according print function. After print
+reset all flags. Returns amount of chars printed.
+*/
 static int	type_check(int count, va_list ap, t_flags *flags, const char *fmt)
 {
 	if (*fmt == 'c')
@@ -96,6 +108,9 @@ static int	type_check(int count, va_list ap, t_flags *flags, const char *fmt)
 	return (count);
 }
 
+/*
+Prints percentage sign.
+*/
 static int	print_percent(int count)
 {
 	ft_putchar_fd('%', 1);
@@ -103,6 +118,9 @@ static int	print_percent(int count)
 	return (count);
 }
 
+/*
+Resets all flags to 0.
+*/
 static void	set_flags(t_flags *flags)
 {
 	flags->hash = 0;
@@ -114,6 +132,11 @@ static void	set_flags(t_flags *flags)
 	flags->precision = 0;
 	flags->width = 0;
 }
+
+/*
+********************Uncomment for testing**********************************
+also: ft_putchar_fd; check_flags.c/ft_atoi
+*/
 
 // int	main(void)
 // {

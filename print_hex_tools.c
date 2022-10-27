@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:50:10 by sqiu              #+#    #+#             */
-/*   Updated: 2022/10/24 17:46:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2022/10/27 09:59:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ int	print_hash_up(int count)
 	return (count);
 }
 
+/*
+Reduce optional spaces to be printed by 2 for 0x.
+If precision specified and precision value greater than amount of chars to
+be printed, reduce spaces to be printed by precision value.
+If no precision specified, reduce spaces to be printed by amount of chars to
+be printed.
+Print spaces if amount to be printed still greater zero after afore mentioned
+operations.
+*/
 int	print_spaces_x(int count, int conv, t_flags *flags)
 {
 	int	n;
@@ -44,6 +53,17 @@ int	print_spaces_x(int count, int conv, t_flags *flags)
 	return (count);
 }
 
+/*
+Difference to hexadecimal print: optional spaces to be printed are NOT
+reduced by preceding 0x as address always includes them.
+
+If precision specified and precision value greater than amount of chars to
+be printed, reduce spaces to be printed by precision value.
+If no precision specified, reduce spaces to be printed by amount of chars to
+be printed.
+Print spaces if amount to be printed still greater zero after afore mentioned
+operations.
+*/
 int	print_spaces_p(int count, int conv, t_flags *flags)
 {
 	int	n;

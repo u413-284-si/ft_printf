@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 10:31:12 by sqiu              #+#    #+#             */
-/*   Updated: 2022/10/24 18:20:00 by sqiu             ###   ########.fr       */
+/*   Updated: 2022/10/27 09:38:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 static int			dig_count(int n);
 static const char	*set_prec(const char *fmt, t_flags *flags);
 
+/*
+********************Uncomment for testing**********************************
+*/
 // int	ft_atoi(const char *str)
 // {
 // 	int		i;
@@ -43,6 +46,10 @@ static const char	*set_prec(const char *fmt, t_flags *flags);
 // 	return (result * sign);
 // }
 
+/*
+If respective flag encountered, set struct members value to 1. Retrieve
+width value with ft_atoi. Return fmt string at following position.
+*/
 char	*check_flags(const char *fmt, t_flags *flags)
 {
 	while (!(*fmt == 'c' || *fmt == 's' || *fmt == 'p' || *fmt == 'd'
@@ -71,6 +78,10 @@ char	*check_flags(const char *fmt, t_flags *flags)
 	return ((char *)fmt);
 }
 
+/*
+Retrieve precision value with ft_atoi. Return fmt string at last digit
+position.
+*/
 static const char	*set_prec(const char *fmt, t_flags *flags)
 {
 	flags->dot = 1;

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:52:54 by sqiu              #+#    #+#             */
-/*   Updated: 2022/10/24 18:14:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2022/10/27 10:12:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ static size_t	set_conv(const char *s, t_flags *flags);
 static int		print_s(const char *s, int count, t_flags *flags);
 static int		print_error(int count, t_flags *flags);
 
+/*
+If given string pointer is NULL, print error message (null). When width is
+specified, print spaces minus 6 (= amount of chars in error message).
+Count chars to be printed.
+Differentiate between left or right justification.
+*/
 int	print_string(const char *s, int count, t_flags *flags)
 {
 	size_t	conv;
@@ -41,6 +47,10 @@ int	print_string(const char *s, int count, t_flags *flags)
 	return (count);
 }
 
+/*
+Print string, if precision is specified, only print chars until 
+precision value is reached.
+*/
 static int	print_s(const char *s, int count, t_flags *flags)
 {
 	if (flags->dot == 0)
@@ -64,6 +74,12 @@ static int	print_s(const char *s, int count, t_flags *flags)
 	return (count);
 }
 
+/*
+If no precision is given or width less than precision (?), chars to be
+printed = string length.
+If precision is given, chars to be
+printed = precision value.
+*/
 static size_t	set_conv(const char *s, t_flags *flags)
 {
 	size_t	conv;
